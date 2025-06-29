@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FiArrowRight, FiMail, FiSend } from 'react-icons/fi';
 import { Sparkles, Zap } from 'lucide-react';
+import emailjs from 'emailjs-com';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -25,15 +26,20 @@ const ContactPage = () => {
     setSubmitStatus(null);
     
     try {
-      const response = await fetch('https://your-backend-api.com/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      // No need to initialize with Public Key, just use it directly in send
+      const response = await emailjs.send(
+        'service_0tvp6mc',
+        'template_lnr87w9', 
+        {
+          from_name: formData.name,   
+          from_email: formData.email, 
+          message: formData.message,
+          to_email: 'ishwarya@gmail.com'
         },
-        body: JSON.stringify(formData),
-      });
+        'qMSXnuhlxYQLr9uLr' 
+      );
 
-      if (response.ok) {
+      if (response.status === 200) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', message: '' });
       } else {
@@ -41,12 +47,11 @@ const ContactPage = () => {
       }
     } catch (error) {
       setSubmitStatus('error');
-      console.error('Error submitting form:', error);
+      console.error('Error sending email:', error);
     } finally {
       setIsSubmitting(false);
     }
   };
-
   return (
     <section id="contact" className="min-h-fit py-20 px-6 md:px-12 lg:px-16 relative overflow-hidden bg-gradient-to-br from-[#faa1d4] via-[#f583c7] to-[#f36bba]">
       {/* Background Elements */}
@@ -185,7 +190,7 @@ const ContactPage = () => {
             <div className="bg-white/70 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-lg">
               <h4 className="font-bold text-gray-900 mb-3">React.js Developer Services</h4>
               <p className="text-gray-700 mb-4">
-                Specializing in building modern, performant web applications with React.js, Next.js, and Tailwind CSS.
+                Specializing in building modern, performant web applications with React.js and Tailwind CSS.
               </p>
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
