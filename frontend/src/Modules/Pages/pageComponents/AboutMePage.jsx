@@ -2,6 +2,7 @@ import React from 'react';
 import { FiDownload } from 'react-icons/fi';
 import { Sparkles } from 'lucide-react';
 import AboutMe from '../../../assets/AboutMe.png';
+import ishupdf from "../../../assets/ISHWARYA BALAJI.pdf";
 
 const AboutMePage = () => {
   return (
@@ -59,10 +60,14 @@ const AboutMePage = () => {
 
         {/* Download button with matching gradient */}
         <div className="relative flex justify-center lg:justify-start">
-          <button className="bg-gradient-to-r from-pink-600 to-purple-600 text-white px-5 py-2 sm:px-6 sm:py-2 rounded-xl font-semibold hover:from-pink-700 hover:to-purple-700 transition-all duration-300 flex items-center group text-sm sm:text-base">
+          <a
+            href={ishupdf}
+            download
+            className="bg-gradient-to-r from-pink-600 to-purple-600 text-white px-5 py-2 sm:px-6 sm:py-2 rounded-xl font-semibold hover:from-pink-700 hover:to-purple-700 transition-all duration-300 flex items-center group text-sm sm:text-base"
+          >
             Download CV
             <FiDownload className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
-          </button>
+          </a>
           <div className="absolute -bottom-3 -right-3 w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-[#f36bba] opacity-20"></div>
           <div className="absolute -top-3 -left-3 w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-[#f36bba] opacity-15"></div>
         </div>
