@@ -1,4 +1,3 @@
-import "./App.css";
 import SocialIcons from "./Modules/Pages/baseComponents/SocialIcons";
 import AboutMePage from "./Modules/Pages/pageComponents/AboutMePage";
 import ContactPage from "./Modules/Pages/pageComponents/ContactPage";
